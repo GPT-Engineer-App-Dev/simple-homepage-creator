@@ -1,19 +1,30 @@
-// Update this page (the content is just a fallback if you fail and example)
-// Use chakra-ui
-import { Container, Text, VStack } from "@chakra-ui/react";
-
-// Example of using react-icons
-// import { FaRocket } from "react-icons/fa";
-// <IconButton aria-label="Add" icon={<FaRocket />} size="lg" />; // IconButton would also have to be imported from chakra
+import { Box, Flex, Image, useBreakpointValue } from "@chakra-ui/react";
+import { FaBars } from "react-icons/fa";
+import { IconButton } from "@chakra-ui/react";
 
 const Index = () => {
+  const isMobile = useBreakpointValue({ base: true, md: false });
+
   return (
-    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-      <VStack spacing={4}>
-        <Text fontSize="2xl">Your Blank Canvas</Text>
-        <Text>Chat with the agent to start making edits.</Text>
-      </VStack>
-    </Container>
+    <Box bg="gray.100" minH="100vh">
+      <Flex as="header" p={4} justifyContent="space-between" alignItems="center" bg="blackAlpha.800">
+        <IconButton
+          aria-label="Open Menu"
+          icon={<FaBars />}
+          variant="outline"
+          colorScheme="whiteAlpha"
+          display={isMobile ? "inherit" : "none"}
+        />
+        <Flex as="nav" gap={8} display={isMobile ? "none" : "flex"}>
+          <Box as="a" href="#" p={2} color="white" fontWeight="bold">Home</Box>
+          <Box as="a" href="#" p={2} color="white" fontWeight="bold">About</Box>
+          <Box as="a" href="#" p={2} color="white" fontWeight="bold">Contact</Box>
+        </Flex>
+      </Flex>
+      <Flex justifyContent="center" alignItems="center" height="calc(100vh - 64px)">
+        <Image src="/images/dice-chess.jpg" alt="Dice on Chess Board" objectFit="cover" boxSize="100%" />
+      </Flex>
+    </Box>
   );
 };
 
